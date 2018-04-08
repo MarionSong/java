@@ -8,3 +8,4 @@ public static long gcd(long m,long n)
 	}
 	return m;
 }
+
