@@ -9,6 +9,3 @@ int binarySearch(AnyType [] a, AnyType x){
 			high=mid-1;
 		else 
 			return mid;
-	}
-	return NOT_FOUND;
-}
