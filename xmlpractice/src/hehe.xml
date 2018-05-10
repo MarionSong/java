@@ -1,0 +1,10 @@
+<?xml version="1.0"  encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="1.css"?>
+<中国 name="china"> <!-- 这个是注释 -->
+	<上海 name="shanghai">
+		<![CDATA[这里面的东西都要原封不动的输出]]>
+		&lt;&lt;这里写的是主要内容,我在学习&gt;&gt;
+	</上海>
+	<广州>广州</广州>
+	<香港>香港</香港>
+</中国>

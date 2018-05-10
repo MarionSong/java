@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-stylesheet type="text/css" href="1.css"?><中国 name="china"> <!-- 这个是注释 -->
+	<吉林 name="jilin">
+		<![CDATA[这里面的东西都要原封不动的输出]]>
+		&lt;&lt;这里写的是主要内容,我在学习&gt;&gt;
+	</吉林>
+	<广州>广州</广州>
+	<香港>香港</香港>
+<杭州>杭州</杭州></中国>
