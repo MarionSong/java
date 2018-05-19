@@ -48,7 +48,7 @@ public class ClientHandler implements Runnable{
 				response.setStatus(200);//正常访问
 			}
 			//完成登陆和注册的功能
-			if(request.getUri().startsWith("/RegistUseer")||
+			if(request.getUri().startsWith("/RegistUser")||
 					request.getUri().startsWith("/LoginUser")) {
 				service(request,response);
 			}
@@ -74,7 +74,7 @@ public class ClientHandler implements Runnable{
 		//用户注册
 		Connection conn=null;
 		PreparedStatement ps=null;
-		if(request.getUri().startsWith("/RegistUseer")) {
+		if(request.getUri().startsWith("/RegistUser")) {
 			try {
 				//1,注册驱动 2，获取数据库连接
 				conn = JDBCUtils.getConnection();
@@ -111,21 +111,39 @@ public class ClientHandler implements Runnable{
 			}
 		}else {
 			try {
-				conn=JDBCUtils.getConnection();
-				String sql="select * from user where username=? and password=?";
-				ps=conn.prepareStatement(sql);
-				ps.setString(1, request.getParam("username"));
-				ps.setString(2, request.getParam("password"));
-				ResultSet rs=ps.executeQuery();
-				if(rs.next()) {
-					response.setProtocol("HTTP/1.1");
-					response.setStatus(HttpContext.CODE_OK);
-					File file=new File(ServletContext.webRoot+"/"+"log_success.html");
-					response.setContentType(getContentTypeExt(file));
-					response.setContentLength((int)file.length());
-					BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
-					byte[] bs=new byte[(int)file.length()];
-					bis.read(bs);
+				while(true) {
+					conn=JDBCUtils.getConnection();
+					String sql="select * from user where username=? and password=?";
+					ps=conn.prepareStatement(sql);
+					ps.setString(1, request.getParam("username"));
+					ps.setString(2, request.getParam("password"));
+					ResultSet rs=ps.executeQuery();
+					if(rs.next()) {
+						response.setProtocol("HTTP/1.1");
+						response.setStatus(HttpContext.CODE_OK);
+						File file=new File(ServletContext.webRoot+"/"+"log_success.html");
+						response.setContentType(getContentTypeExt(file));
+						response.setContentLength((int)file.length());
+						BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+						byte[] bs=new byte[(int)file.length()];
+						bis.read(bs);
+						response.getOutputStream().write(bs);
+						response.getOutputStream().flush();
+						socket.close();
+						break;
+					}else {
+						response.setProtocol("HTTP/1.1");
+						response.setStatus(HttpContext.CODE_OK);
+						File file=new File(ServletContext.webRoot+"/"+"relogin.html");
+						response.setContentType(getContentTypeExt(file));
+						response.setContentLength((int)file.length());
+						BufferedInputStream bis=new BufferedInputStream(new FileInputStream(file));
+						byte[] bs=new byte[(int)file.length()];
+						bis.read(bs);
+						response.getOutputStream().write(bs);
+						response.getOutputStream().flush();
+						socket.close();
+					}
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
