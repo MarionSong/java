@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 提取服务器的参数： 端口号 、线程池大小、 服务器遵循协议和服务器资源根目录 -->
+<server>
+	<service>
+		<connector protocol="HTTP/1.1" maxThread="100" port="8887" />
+		<webroot>WebContent</webroot>
+		<!-- 配置404的信息 -->
+		<not-found-page>404.html</not-found-page>
+	</service>
+	<!-- 配置响应的数据类型 ext:访问的资源的后缀名.html .js .css 1，获取ext的值作为Key，type的值作为value存起来 
+		2，浏览器要访问资源时， 根据后缀名从map中取对应的type。 -->
+	<type-mappings>
+		<type-mapping type="text/html" ext="html" />
+		<type-mapping type="image/jpeg" ext="jpg" />
+		<type-mapping type="image/png" ext="png" />
+		<type-mapping type="application/javascript" ext="js" />
+		<type-mapping type="text/css" ext="css" />
+		<type-mapping type="image/ico" ext="ico" />
+	</type-mappings>
+</server>
+
+
+
+
