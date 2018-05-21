@@ -1,0 +1,94 @@
+<!doctype html><!--文档声明行-->
+<html><!--开始标签-->
+   <head><!--网页的头部分-->
+      <title>quickstart</title><!--网页标题-->
+ 
+      <!--指定网页的编码格式-->
+      <meta charset="utf-8"/>
+   </head>
+  
+   <body><!--网页的体部分-->
+      <h2 align="center">注册表单</h2>
+      <form action="#" method="GET">
+         <table
+border="1px" width="50%" height="60%" bordercolor="red" bgcolor="lightgray" cellspacing="0" align="center" cellpadding="5px">
+            <tr>
+                <td>用户名：</td>
+                <td>
+                   <input type="text" name="username"/>
+                </td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td>
+                   <input type="password" name="pwd"/>
+               </td>
+            </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td>
+                   <input type="password" name="repwd"/>
+                </td>
+            </tr>
+            <tr>
+                <td>昵称：</td>
+                <td>
+                   <input type="text" name="nick"/>
+                </td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td>
+                   <input type="radio" name="sex" value="male"/>男
+                   <input type="radio" name="sex" value="female"/>女
+                </td>
+            </tr>
+            <tr>
+                <td>爱好：</td>
+                <td>
+                   <input type="checkbox" name="hobby" value="football"/>足球
+                   <input type="checkbox" name="hobby" value="basketball"/>篮球
+                   <input type="checkbox" name="hobby" value="pingpang"/>乒乓球
+                </td>
+            </tr>
+            <tr>
+                <td>出生地：</td>
+                <td>
+                   <select name="city">
+                      <option value="bj">北京</option>
+                      <option value="tj">天津</option>
+                      <option value="sh">上海</option>
+                      <option value="cq">重庆</option>
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>头像：</td>
+                <td>
+                   <input type="file" name="photo"/>
+                </td>
+            </tr>
+            <tr>
+                <td>个人描述：</td>
+                <td>
+                   <textarea name="describtion">请输入您的个人描述~</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>验证码：</td>
+                <td>
+                   <input type="text" name="validate"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                   <input type="submit" value="提交"/>
+                   <input type="reset" value="重置"/>
+                </td>
+            </tr>
+           
+         </table>
+      </form>
+<br/><br/><br/>
+   </body> 
+</html><!--结束标签-->
