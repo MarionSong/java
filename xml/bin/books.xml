@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="GBK" ?>
+
+<books>
+	<book isbn="4564234135456">
+		<name>&lt;&lt;Java从入门到放弃&gt;&gt;</name>
+		<authros>
+			<author>张三</author>
+			<author>李四</author>
+		</authros>
+		<publisher>Tarena出版社</publisher>
+		<pages>95</pages>
+		<price>￥109.9</price>
+	</book>
+	<book isbn="9456245647">
+		<name>MySql从入门到改行</name>
+		<authros>
+			<author>李四</author>
+			<author>王五</author>
+		</authros>
+		<publisher>Tarena出版社</publisher>
+		<pages>79</pages>
+		<price>￥59.9</price>
+	</book>
+	<book isbn="74248564534647">
+		<name>Linux从入门到懵逼</name>
+		<authros>
+			<author>王五</author>
+			<author>赵六</author>
+		</authros>
+		<publisher>Tarena出版社</publisher>
+		<pages>82</pages>
+		<price>￥99.9</price>
+	</book>
+</books>
