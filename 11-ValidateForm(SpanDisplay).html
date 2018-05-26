@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>表单页面</title>
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript">
+			//表单被提交时会触发onsubmit事件, 驱动该方法执行
+			function checkForm(){
+				var flag = true;
+				//非空校验
+				flag = checkNull("username", "用户名不能为空") && flag;
+				flag = checkNull("password", "密码不能为空") && flag;
+				flag = checkNull("password2", "确认密码不能为空") && flag;
+				flag = checkNull("nickname", "昵称不能为空") && flag;
+				flag = checkNull("email", "邮箱不能为空") && flag;
+				flag = checkNull("img", "头像不能为空") && flag;
+				flag = checkNull("valistr", "验证码不能为空") && flag;
+				flag = checkGenderAndLike("gender", "性别不能为空") && flag;
+				flag = checkGenderAndLike("like", "爱好不能为空") && flag;
+				flag = checkPassword("password", "两次密码不一致") && flag;
+				flag = checkEmail("email", "邮箱格式不正确") && flag;
+				
+				return flag;
+			}
+
+			//检查邮箱格式
+			function checkEmail(name, msg){
+				var email = document.getElementsByName(name)[0].value;
+				setMsg(name, "");
+				if(email == ""){
+					setMsg(name, "邮箱不能为空");
+				}else{
+					var reg = /^\w+@\w+(\.\w+)+$/;
+					
+					if(!reg.test(email)){
+						setMsg(name, msg);
+						return false;
+					}
+				}
+				return true;
+			}
+
+			//检查两次密码是否一致
+			function checkPassword(name, msg){
+				var psw = document.getElementsByName(name)[0].value;
+				var psw2 = document.getElementsByName(name+"2")[0].value;
+				setMsg(name+"2", "");
+				if(psw2 == ""){
+					setMsg(name+"2", "确认密码不能为空");
+					return false;
+				}
+				if(psw != "" && psw2 != "" && psw != psw2){
+					setMsg(name+"2", msg);
+					return false;
+				}
+				return true;
+			}
+
+			//检查性别和爱好
+			function checkGenderAndLike(name, msg){
+				var flag = false;
+				//获取所有的选框, 遍历, 只要有一个被选中, 就校验通过
+				var objs = document.getElementsByName(name);
+				for(var i=0; i<objs.length; i++){
+					if(objs[i].checked){
+						flag = true;
+					}
+				}
+				setMsg(name, "");
+				if(!flag){
+					setMsg(name, msg);
+					return false;
+				}
+				return true;
+				
+			}	
+
+			//当输入框失去焦点时
+			function onblurTA(obj){
+				if(obj.value == ""){
+					obj.value = "请输入描述信息~！";
+				}
+			}
+			//当输入框获得焦点时
+			function onfocusTA(obj){
+				if(obj.value == "请输入描述信息~！"){
+					obj.value = "";
+				}
+			}
+
+			//检查指定name的输入框是否为空, 如果为空给出提示消息
+			function checkNull(name, msg){
+				var value = document.getElementsByName(name)[0].value;
+				setMsg(name, "" );
+				if(value == ""){
+					//alert(msg);
+					setMsg(name, msg);
+					return false;
+				}
+			}
+
+			//设置提示消息的方法
+			function setMsg(name, msg){
+				document.getElementById(name+"_msg").innerHTML = "<font style='color:red;font-size: 12px;'>"+ msg +"</font>";
+			}
+		</script>
+	</head>
+	<body>
+		<form action="http://localhost:8080" method="POST" onsubmit="return checkForm()" >
+			<table border="1px" align="center" cellpadding="10px" cellspacing="0px" borderColor="red" bgcolor="pink">
+				<caption><font color="red" size="6">注册表单</font></caption>
+				<input type="hidden" name="id" value="9527"/>
+				<tr>
+					<td>用户名:</td>
+					<td>
+						<input type="text" name="username" onblur="checkNull('username', '用户名不能为空')"/>
+						<span id="username_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>密码:</td>
+					<td>
+						<input type="password" name="password"  onblur="checkNull('password', '密码不能为空')"/>
+						<span id="password_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>确认密码:</td>
+					<td>
+						<input type="password" name="password2"  onblur="checkPassword('password', '两次密码不一致')"/>
+						<span id="password2_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>性别：</td>
+					<td>
+						<input type="radio" name="gender" value="男"/>男
+						<input type="radio" name="gender" value="女"/>女
+						<span id="gender_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>昵称：</td>
+					<td>
+						<input type="text" name="nickname"  onblur="checkNull('nickname', '昵称不能为空')"/>
+						<span id="nickname_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>邮箱：</td>
+					<td>
+						<input type="text" name="email"  onblur="checkEmail('email', '邮箱格式不正确')"/>
+						<span id="email_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>爱好：</td>
+					<td>
+						<input type="checkbox" name="like" value="lq"/>篮球
+						<input type="checkbox" name="like" value="zq"/>足球
+						<input type="checkbox" name="like" value="qq"/>铅球
+						<input type="checkbox" name="like" value="blq"/>玻璃球
+						<span id="like_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>客户类型：</td>
+					<td>
+						<select name="type">
+							<option value="pm">平民</option>
+							<option value="sxdy">少先队员</option>
+							<option value="gqty">共青团员</option>
+							<option value="ybdy">预备党员</option>
+							<option value="zsdy">正式党员</option>
+						</select>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>头像：</td>
+					<td>
+						<input type="file" name="img" />
+						<span id="img_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>描述信息：</td>
+					<td>
+						<textarea id="desc" rows="5" cols="45" name="desc" onblur="onblurTA(this)" onfocus="onfocusTA(this)">请输入描述信息~！</textarea>
+						<span id="desc_msg" ></span>
+					</td>
+				</tr>
+				<tr>
+					<td>验证码：</td>
+					<td>
+						<input type="text" name="valistr"  onblur="checkNull('valistr', '验证码不能为空')"/>
+						<img src="1.jpg" width="100px" height="20px"/>
+						<span id="valistr_msg" ></span>
+					</td>
+
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="submit" value="提 交"/>
+						<input type="reset" value="重 置"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
