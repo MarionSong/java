@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	
+	<book id="100">
+		<name>java学习手册</name>
+		<author>张飞</author>
+		<price>50</price>
+		<pages>514</pages>
+	</book>
+	<book id="101">
+		<name>23种设计模式</name>
+		<author>关羽</author>
+		<price>100</price>
+		<pages>200</pages>
+	</book>
+	<book id="102">
+		<name>java框架</name>
+		<author>刘备</author>
+		<price>70</price>
+		<pages>514</pages>
+	</book>
+</books>
