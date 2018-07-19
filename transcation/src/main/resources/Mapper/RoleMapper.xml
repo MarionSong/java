@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.marion.sys.dao.RoleDao">
+    <select id="findRole" resultType="com.marion.sys.dao.RoleDao">
+        select * from employees where id=${id}
+    </select>
+    <insert id="insertRole" parameterType="com.marion.sys.dao.RoleDao" useGeneratedKeys="true" keyProperty="id">
+        insert into employees(name,gender,salary) values (#{name},#{gender},#{salary})
+    </insert>
+</mapper>
